@@ -1,15 +1,18 @@
 import './App.css';
-import Header from "./components/Header";
-import Searchbar from "./components/Searchbar";
-import Booklist from "./components/BookList"
-
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Header from "./components/Header"
+import Search from "./pages/Search"
+import Saved from "./pages/Saved"
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <Searchbar />
-      <Booklist />
-    </div>
+    <Router>
+      <div>
+        <Header />
+          <Route exact path="/" component={Search} />
+          <Route exact path="/saved" component={Saved} />
+          <Route exact path="/search" component={Search} />
+      </div>
+    </Router>
   );
 }
 

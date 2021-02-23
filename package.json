@@ -1,7 +1,7 @@
 {
   "name": "parkers-googlebooks",
   "version": "1.0.0",
-  "description": "",
+  "description": "Save books from google to a server! Get a list of books when searched for",
   "main": "server.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",

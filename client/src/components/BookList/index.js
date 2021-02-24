@@ -1,15 +1,38 @@
 import React, { useState } from "react";
 import Book from "../Book";
+import API from "../../utils/API"
 
 function BookList(props) {
   const [books, setBooks] = useState(["", "", ""]);
-  let HFS = props.handleFormSubmit;
-  let setFormObject = props.setFormObject;
-  if (props.handleFormSubmit) {
-    HFS = props.handleFormSubmit;
-  } else {
-    HFS = "#";
-    setFormObject = "#";
+  const [formObject, setFormObject] = useState({
+    title: "",
+    authors: "",
+    infoLink: "",
+    imageLink: "",
+    description: "",
+  });
+  
+  function handleFormSubmit(event) {
+    event.preventDefault();
+    API.saveBook({
+      title: formObject.title,
+      authors: formObject.authors,
+      infoLink: formObject.infoLink,
+      imageLink: formObject.imageLink,
+      description: formObject.description,
+    })
+      .then(console.log("Saved: ", formObject))
+      .then(() =>
+        setFormObject({
+          title: "",
+          authors: "",
+          infoLink: "",
+          imageLink: "",
+          description: "",
+        })
+      )
+
+      .catch((err) => console.log(err));
   }
 
   if (props.books.items != books) {
@@ -20,17 +43,17 @@ function BookList(props) {
       <div>
         <Book
           books={books[0]}
-          handleFormSubmit={HFS}
+          handleFormSubmit={handleFormSubmit}
           setFormObject={setFormObject}
         />
         <Book
           books={books[1]}
-          handleFormSubmit={HFS}
+          handleFormSubmit={handleFormSubmit}
           setFormObject={setFormObject}
         />
         <Book
           books={books[2]}
-          handleFormSubmit={HFS}
+          handleFormSubmit={handleFormSubmit}
           setFormObject={setFormObject}
         />
       </div>

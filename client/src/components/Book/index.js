@@ -1,6 +1,8 @@
 import React from "react";
+import DeleteButton from "../DeleteButton"
 
 function Book(props) {
+  console.log("id: ",props.books._id)
   if (props.books) {
     let book = props.books;
     if (props.books.volumeInfo) {
@@ -30,6 +32,7 @@ function Book(props) {
   }
 
   function buttonSubmit(event) {
+    event.preventDefault();
     let book = props.books.volumeInfo;
     let authors = book.authors;
     if (book.author) authors = book.author;
@@ -39,13 +42,16 @@ function Book(props) {
       infoLink: book.infoLink,
       imageLink: book.imageLinks.smallThumbnail,
       description: book.description
-    });
+    })
     props.handleFormSubmit(event);
+    
   }
-
+  
   function buttonCheck() {
     if (props.handleFormSubmit) {
-      return <button onClick={buttonSubmit}>Save Book</button>;
+      return <button onClick={buttonSubmit}>Click twice to save book</button>;
+    } else if (props.books._id) {
+      return <DeleteButton bookId={props.books._id} loadBooks={props.loadBooks} />
     } else {
       return null;
     }

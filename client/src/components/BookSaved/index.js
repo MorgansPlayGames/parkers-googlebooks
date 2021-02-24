@@ -13,7 +13,7 @@ function BookSaved(props) {
     return (
       <div>
         {bookList.map((book, index) => {
-          return <Book books={book} index={index} />;
+          return <Book books={book} index={index} loadBooks={props.loadBooks} />;
         })}{" "}
       </div>
     );

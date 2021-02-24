@@ -5,18 +5,9 @@ import useDebounce from "../../utils/debounceHook";
 import API from "../../utils/API";
 
 function Search() {
-  const [search, setSearch] = useState("Googlebooks");
-  // const [title, setTitle] = useState("");
-  // const [url, setUrl] = useState("");
+  const [search, setSearch] = useState("1984");
   const [error, setError] = useState("");
   const [book, setBook] = useState([]);
-  const [formObject, setFormObject] = useState({
-    title: "",
-    authors: "",
-    infoLink: "",
-    imageLink: "",
-    description: "",
-  });
 
   const debouncedSearchTerm = useDebounce(search, 500);
 
@@ -44,37 +35,12 @@ function Search() {
     setSearch(event.target.value);
   };
 
-  function handleFormSubmit(event) {
-    event.preventDefault();
-    API.saveBook({
-      title: formObject.title,
-      authors: formObject.authors,
-      infoLink: formObject.infoLink,
-      imageLink: formObject.imageLink,
-      description: formObject.description,
-    })
-      .then(console.log("Saved: ", formObject))
-      .then(() =>
-        setFormObject({
-          title: "",
-          authors: "",
-          infoLink: "",
-          imageLink: "",
-          description: "",
-        })
-      )
-
-      .catch((err) => console.log(err));
-  }
-
   return (
     <>
       <SearchBar handleInputChange={handleInputChange} results={search} />
       <div>{error}</div>
       <BookList
         books={book}
-        handleFormSubmit={handleFormSubmit}
-        setFormObject={setFormObject}
       />
     </>
   );

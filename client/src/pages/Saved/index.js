@@ -20,9 +20,10 @@ function Saved() {
       )
       .catch(err => console.log(err));
   };
+  
   return (
     <>
-      <BookSaved books={books} />
+      <BookSaved books={books} loadBooks={loadBooks} />
     </>
   );
 }

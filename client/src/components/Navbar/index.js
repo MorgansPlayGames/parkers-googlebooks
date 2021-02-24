@@ -9,7 +9,7 @@ return (
     </Link>
     <div>
       <ul className="navbar-nav">
-        <li className="nav-item">
+        <li className="nav-item" key="1">
           <Link
             to="/"
             className={
@@ -21,7 +21,7 @@ return (
             Search Books
           </Link>
         </li>
-        <li className="nav-item">
+        <li className="nav-item" key="2">
           <Link
             to="/saved"
             className={window.location.pathname === "/saved" ? "nav-link active" : "nav-link"}

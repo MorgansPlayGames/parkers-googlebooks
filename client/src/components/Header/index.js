@@ -6,7 +6,7 @@ function Header(props) {
   return (
     <div>
         <Navbar />
-        <p>Header Stuff</p>
+        <p className="h6">Search and save books to a server!</p>
     </div>
   );
 }

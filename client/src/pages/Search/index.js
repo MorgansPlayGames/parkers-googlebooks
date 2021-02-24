@@ -36,13 +36,13 @@ function Search() {
   };
 
   return (
-    <>
+    <main className="p-2 m-2">
       <SearchBar handleInputChange={handleInputChange} results={search} />
       <div>{error}</div>
       <BookList
         books={book}
       />
-    </>
+    </main>
   );
 }
 

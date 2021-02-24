@@ -22,9 +22,9 @@ function Saved() {
   };
   
   return (
-    <>
+    <main className="p-2 m-2">
       <BookSaved books={books} loadBooks={loadBooks} />
-    </>
+    </main>
   );
 }
 

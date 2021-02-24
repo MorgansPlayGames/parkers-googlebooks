@@ -1,18 +1,22 @@
 import React, { useState } from "react";
 import Book from "../Book";
 
-
-
 function BookSaved(props) {
-  const [books, setBooks] = useState(["",""]);
+  let bookList = props.books;
+  if (bookList.length > 0) {
+    return bookRender();
+  } else {
+    return <p>Please save a book!</p>;
+  }
 
-//   if(props.books.items!=books){
-//     setBooks(props.books.items)
-//   } 
-  return(
-    <div>
-        <Book />
-    </div>
-  )
+  function bookRender() {
+    return (
+      <div>
+        {bookList.map((book, index) => {
+          return <Book books={book} index={index} />;
+        })}{" "}
+      </div>
+    );
+  }
 }
 export default BookSaved;

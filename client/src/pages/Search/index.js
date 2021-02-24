@@ -12,10 +12,11 @@ function Search() {
   const [book, setBook] = useState([]);
   const [formObject, setFormObject] = useState({
     title: "",
-    author: "",
-    link: "",
-    imageLink: ""
-  })
+    authors: "",
+    infoLink: "",
+    imageLink: "",
+    description: "",
+  });
 
   const debouncedSearchTerm = useDebounce(search, 500);
 
@@ -45,34 +46,35 @@ function Search() {
 
   function handleFormSubmit(event) {
     event.preventDefault();
-    console.log(event.target)
     API.saveBook({
       title: formObject.title,
-      author: formObject.author,
-      link: formObject.link,
-      img: formObject.img,
+      authors: formObject.authors,
+      infoLink: formObject.infoLink,
+      imageLink: formObject.imageLink,
+      description: formObject.description,
     })
+      .then(console.log("Saved: ", formObject))
       .then(() =>
         setFormObject({
           title: "",
-          author: "",
-          link: "",
-          imageLink: ""
+          authors: "",
+          infoLink: "",
+          imageLink: "",
+          description: "",
         })
       )
-      .then(console.log("Book Saved"))
+
       .catch((err) => console.log(err));
   }
 
   return (
     <>
-      <SearchBar 
-      handleInputChange={handleInputChange} results={search} />
+      <SearchBar handleInputChange={handleInputChange} results={search} />
       <div>{error}</div>
-      <BookList 
-      books={book} 
-      handleFormSubmit={handleFormSubmit} 
-      setFormObject={setFormObject}
+      <BookList
+        books={book}
+        handleFormSubmit={handleFormSubmit}
+        setFormObject={setFormObject}
       />
     </>
   );
